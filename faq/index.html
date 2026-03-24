@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Focus Wheel</title>
+<style>
+  :root {
+    --bg-main: #2A4B6D;
+    --bg-deep: #1A2F44;
+    --bg-input: #0B2538;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #3A9A3A;
+    --accent-teal: #78C870;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header .tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover { border-color: rgba(255, 255, 255, 0.18); }
+
+  .faq-question {
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: var(--text-primary);
+    transition: background 0.2s;
+  }
+
+  .faq-question:hover { background: rgba(255, 255, 255, 0.03); }
+
+  .faq-toggle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--accent-teal);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .faq-item.active .faq-toggle { transform: rotate(45deg); }
+
+  .faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease; }
+
+  .faq-item.active .faq-answer { max-height: 600px; }
+
+  .faq-answer-inner { padding: 0 1.25rem 1.25rem; }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  a { color: var(--accent-teal); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--accent-green); text-decoration: underline; }
+
+  .back-container { text-align: center; margin-top: 2rem; }
+
+  .back-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(120, 200, 112, 0.15);
+    border: 1px solid rgba(120, 200, 112, 0.3);
+    color: var(--accent-teal);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+
+  .back-link:hover { background: rgba(120, 200, 112, 0.25); text-decoration: none; }
+
+  .resurface-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    transition: all 0.2s;
+  }
+  .resurface-link:hover { border-color: rgba(255,255,255,0.3); color: var(--text-primary); text-decoration: none; }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a { margin: 0 1rem; font-size: 0.85rem; color: var(--text-muted); }
+  .footer-links a:hover { color: var(--accent-teal); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .faq-question { padding: 1rem; font-size: 0.9rem; }
+    .faq-answer-inner { padding: 0 1rem 1rem; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><clipPath id="hdr-clip"><circle cx="100" cy="100" r="95"/></clipPath></defs>
+    <g clip-path="url(#hdr-clip)">
+      <path d="M100,100 L100,5 A95,95 0 0,1 147.5,11.7 Z" fill="#3A0C0C"/>
+      <path d="M100,100 L147.5,11.7 A95,95 0 0,1 182.3,47.5 Z" fill="#6B1515"/>
+      <path d="M100,100 L182.3,47.5 A95,95 0 0,1 195,100 Z" fill="#A02828"/>
+      <path d="M100,100 L195,100 A95,95 0 0,1 182.3,152.5 Z" fill="#C44040"/>
+      <path d="M100,100 L182.3,152.5 A95,95 0 0,1 147.5,188.3 Z" fill="#D4622A"/>
+      <path d="M100,100 L147.5,188.3 A95,95 0 0,1 100,195 Z" fill="#E8882A"/>
+      <path d="M100,100 L100,195 A95,95 0 0,1 52.5,188.3 Z" fill="#EED870"/>
+      <path d="M100,100 L52.5,188.3 A95,95 0 0,1 17.7,152.5 Z" fill="#D4E870"/>
+      <path d="M100,100 L17.7,152.5 A95,95 0 0,1 5,100 Z" fill="#A8D888"/>
+      <path d="M100,100 L5,100 A95,95 0 0,1 17.7,47.5 Z" fill="#78C870"/>
+      <path d="M100,100 L17.7,47.5 A95,95 0 0,1 52.5,11.7 Z" fill="#50B040"/>
+      <path d="M100,100 L52.5,11.7 A95,95 0 0,1 100,5 Z" fill="#3A9A3A"/>
+    </g>
+    <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <g stroke="rgba(255,255,255,0.12)" stroke-width="0.5">
+      <line x1="100" y1="100" x2="100" y2="5"/><line x1="100" y1="100" x2="147.5" y2="11.7"/>
+      <line x1="100" y1="100" x2="182.3" y2="47.5"/><line x1="100" y1="100" x2="195" y2="100"/>
+      <line x1="100" y1="100" x2="182.3" y2="152.5"/><line x1="100" y1="100" x2="147.5" y2="188.3"/>
+      <line x1="100" y1="100" x2="100" y2="195"/><line x1="100" y1="100" x2="52.5" y2="188.3"/>
+      <line x1="100" y1="100" x2="17.7" y2="152.5"/><line x1="100" y1="100" x2="5" y2="100"/>
+      <line x1="100" y1="100" x2="17.7" y2="47.5"/><line x1="100" y1="100" x2="52.5" y2="11.7"/>
+    </g>
+    <circle cx="100" cy="100" r="30" fill="#3A9A3A"/>
+  </svg>
+  <div class="brand">Focus Wheel</div>
+  <h1>Frequently Asked Questions</h1>
+  <div class="tagline">Everything you need to know about Focus Wheel</div>
+</div>
+
+<div class="container">
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What exactly does Focus Wheel do?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Focus Wheel is a coach-guided process for shifting how you feel. When something's bothering you, you start with that contrast, name what you'd prefer instead, and build twelve better-feeling thoughts — each one reaching a little further toward how you actually want to feel. By the time the wheel is complete, you've genuinely shifted.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Do I need to know about Abraham-Hicks to use this?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Not at all! Coach teaches you the process as you use it. Whether you're familiar with Abraham-Hicks or have never heard of them, the emotional guidance principles work the same way. You don't need to believe in Law of Attraction — the practical technique works regardless of your personal beliefs.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How is this different from other mood apps?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Most apps just track your mood or tell you to "think positive." Focus Wheel actively helps you shift your emotional state. Instead of logging that you feel frustrated, it guides you to find thoughts you actually believe that feel better. It's coaching, not tracking. And it never asks you to make impossible jumps from sadness to joy.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How does the AI Coach know what to say?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Coach is specifically guided in the Focus Wheel process and Abraham-Hicks emotional guidance principles. It understands that you can't leap from despair to joy — but you can reach for a thought that's slightly better. Coach helps you find those thoughts, one at a time.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How quickly will I feel a difference?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>You'll feel shifts within the process itself. That's the beauty of the incremental approach — when you find a thought that feels even slightly better, you feel the relief immediately. A complete wheel takes about 15–20 minutes, and you'll notice the difference before you're done.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What's the difference between Guided and Solo mode?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>In Guided mode, Coach walks you through every step — great when you're learning or when you want support finding statements. In Solo mode, you fill in the wheel yourself at your own pace. Both are always available; your choice every time.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Can I save my completed wheels?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Yes! You can save up to three completed wheels. They're great for revisiting when you need a reminder of the better-feeling thoughts you found — or just to see how far you've come.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Is this therapy or a replacement for therapy?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Focus Wheel is an emotional guidance tool, not therapy. It's designed to help you navigate daily emotional challenges and find relief. If you're dealing with serious mental health issues, please continue working with qualified mental health professionals. Many people find Focus Wheel works beautifully alongside therapy.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How much does it cost?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Focus Wheel is $9.99 — a one-time purchase. No subscriptions, no recurring charges. You buy it once and it's yours.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Is my data private?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Yes. All conversations and saved wheels are stored locally on your device. No account required, no tracking, no data sales. The only data sent externally is for AI processing, and it's not stored or associated with your identity.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What if I want more processes beyond Focus Wheel?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Focus Wheel is one of 22 Abraham-Hicks processes. If you love this and want access to all of them — including Moving Up the Emotional Scale, Segment Intending, Rampage of Appreciation, and more — check out <a href="https://www.deepalignment.com" target="_blank">Resurface: Deep Alignment</a>, our full platform with every process in one app.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What platforms is Focus Wheel available on?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Focus Wheel is available for iPhone and iPad on the App Store.</p>
+    </div></div>
+  </div>
+
+  <div class="back-container">
+    <a href="https://www.focuswheelapp.com" class="back-link" target="_top">← Back to Focus Wheel</a>
+    <br>
+    <a href="https://www.deepalignment.com" class="resurface-link" target="_blank" rel="noopener">Looking for all 22 processes? → Resurface: Deep Alignment</a>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://www.focuswheelapp.com" target="_top">Home</a>
+    <a href="https://www.focuswheelapp.com/support" target="_top">Support</a>
+    <a href="https://www.focuswheelapp.com/privacy-policy" target="_top">Privacy Policy</a>
+    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_top">Terms of Use (EULA)</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    });
+  });
+</script>
+</body>
+</html>

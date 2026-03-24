@@ -1,0 +1,7 @@
+[build]
+  publish = "/"
+
+# Prevent Cloudflare-style email obfuscation
+[build.processing]
+  [build.processing.html]
+    email_obfuscation = false

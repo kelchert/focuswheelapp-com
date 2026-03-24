@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Focus Wheel</title>
+<style>
+  :root {
+    --bg-main: #2A4B6D;
+    --bg-deep: #1A2F44;
+    --bg-input: #0B2538;
+    --coach-bubble: #BED7F2;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #3A9A3A;
+    --accent-teal: #78C870;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .highlight-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .highlight-box.accent {
+    border-left: 3px solid var(--accent-teal);
+  }
+
+  h2 { font-size: 1.2rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem; color: var(--text-primary); }
+
+  h3 { font-size: 1rem; font-weight: 500; color: var(--accent-teal); margin-top: 1.5rem; margin-bottom: 0.5rem; }
+
+  p { color: var(--text-secondary); margin-bottom: 0.75rem; font-size: 0.95rem; }
+
+  ul { margin: 0.5rem 0 1rem; padding-left: 1.25rem; }
+
+  li { color: var(--text-secondary); margin-bottom: 0.4rem; font-size: 0.95rem; }
+
+  li strong { color: var(--text-primary); font-weight: 500; }
+
+  a { color: var(--accent-teal); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--accent-green); text-decoration: underline; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .two-col .col {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .two-col h3 { margin-top: 0; }
+
+  .contact-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .cta-box {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+  }
+
+  .cta-box p { color: var(--text-primary); font-weight: 400; }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(120, 200, 112, 0.15);
+    border: 1px solid rgba(120, 200, 112, 0.3);
+    color: var(--accent-teal);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+
+  .back-link:hover { background: rgba(120, 200, 112, 0.25); text-decoration: none; }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a { margin: 0 1rem; font-size: 0.85rem; color: var(--text-muted); }
+  .footer-links a:hover { color: var(--accent-teal); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs><clipPath id="hdr-clip"><circle cx="100" cy="100" r="95"/></clipPath></defs>
+    <g clip-path="url(#hdr-clip)">
+      <path d="M100,100 L100,5 A95,95 0 0,1 147.5,11.7 Z" fill="#3A0C0C"/>
+      <path d="M100,100 L147.5,11.7 A95,95 0 0,1 182.3,47.5 Z" fill="#6B1515"/>
+      <path d="M100,100 L182.3,47.5 A95,95 0 0,1 195,100 Z" fill="#A02828"/>
+      <path d="M100,100 L195,100 A95,95 0 0,1 182.3,152.5 Z" fill="#C44040"/>
+      <path d="M100,100 L182.3,152.5 A95,95 0 0,1 147.5,188.3 Z" fill="#D4622A"/>
+      <path d="M100,100 L147.5,188.3 A95,95 0 0,1 100,195 Z" fill="#E8882A"/>
+      <path d="M100,100 L100,195 A95,95 0 0,1 52.5,188.3 Z" fill="#EED870"/>
+      <path d="M100,100 L52.5,188.3 A95,95 0 0,1 17.7,152.5 Z" fill="#D4E870"/>
+      <path d="M100,100 L17.7,152.5 A95,95 0 0,1 5,100 Z" fill="#A8D888"/>
+      <path d="M100,100 L5,100 A95,95 0 0,1 17.7,47.5 Z" fill="#78C870"/>
+      <path d="M100,100 L17.7,47.5 A95,95 0 0,1 52.5,11.7 Z" fill="#50B040"/>
+      <path d="M100,100 L52.5,11.7 A95,95 0 0,1 100,5 Z" fill="#3A9A3A"/>
+    </g>
+    <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.8"/>
+    <g stroke="rgba(255,255,255,0.12)" stroke-width="0.5">
+      <line x1="100" y1="100" x2="100" y2="5"/><line x1="100" y1="100" x2="147.5" y2="11.7"/>
+      <line x1="100" y1="100" x2="182.3" y2="47.5"/><line x1="100" y1="100" x2="195" y2="100"/>
+      <line x1="100" y1="100" x2="182.3" y2="152.5"/><line x1="100" y1="100" x2="147.5" y2="188.3"/>
+      <line x1="100" y1="100" x2="100" y2="195"/><line x1="100" y1="100" x2="52.5" y2="188.3"/>
+      <line x1="100" y1="100" x2="17.7" y2="152.5"/><line x1="100" y1="100" x2="5" y2="100"/>
+      <line x1="100" y1="100" x2="17.7" y2="47.5"/><line x1="100" y1="100" x2="52.5" y2="11.7"/>
+    </g>
+    <circle cx="100" cy="100" r="30" fill="#3A9A3A"/>
+  </svg>
+  <div class="brand">Focus Wheel</div>
+  <h1>Privacy Policy</h1>
+  <div class="last-updated">Last Updated: March 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="highlight-box accent">
+    <p style="color: var(--text-primary); margin-bottom: 0;">Focus Wheel is designed with your privacy in mind. No account required, no tracking, no data sales. Your emotional work stays yours.</p>
+  </div>
+
+  <h2>Information We Collect</h2>
+
+  <h3>Conversation Data</h3>
+  <ul>
+    <li><strong>What:</strong> Your messages and Focus Wheel statements</li>
+    <li><strong>Why:</strong> To provide personalized AI coaching responses</li>
+    <li><strong>How:</strong> Through your interactions with the app</li>
+  </ul>
+
+  <h3>No Account Required</h3>
+  <div class="highlight-box">
+    <ul style="margin: 0;">
+      <li>Focus Wheel works without creating an account</li>
+      <li>No email, name, or personal identifiers collected</li>
+      <li>No tracking or analytics</li>
+    </ul>
+  </div>
+
+  <h2>How We Use Your Information</h2>
+
+  <h3>AI Processing</h3>
+  <ul>
+    <li>Your messages are sent to Anthropic's Claude API</li>
+    <li>Used solely to generate coaching responses</li>
+    <li>Anthropic processes data according to their privacy policy</li>
+    <li>No data is used for AI training without your consent</li>
+  </ul>
+  <p>Coached sessions use AI technology provided by Anthropic. Your conversation content is processed by Anthropic's servers to generate Coach responses. This content is not stored or retained by Deep Alignment LLC or Anthropic beyond the active session. All saved wheels and conversations are stored locally on your device.</p>
+
+  <h3>Local Storage</h3>
+  <ul>
+    <li>All conversations and saved wheels stored locally on <strong>your</strong> device</li>
+    <li>Never uploaded to our servers</li>
+    <li>You control when to save or delete</li>
+    <li>Data remains on your device unless you explicitly share it</li>
+  </ul>
+
+  <h2>Data Sharing</h2>
+
+  <div class="two-col">
+    <div class="col">
+      <h3>We do NOT:</h3>
+      <ul style="margin-bottom: 0;">
+        <li>Sell your data</li>
+        <li>Share with advertisers</li>
+        <li>Upload to cloud servers</li>
+        <li>Track your usage</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>We ONLY:</h3>
+      <ul style="margin-bottom: 0;">
+        <li>Send conversation data to Anthropic for AI responses</li>
+        <li>Store data locally on your device</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Your Rights</h2>
+
+  <h3>Full Control</h3>
+  <ul>
+    <li>Delete any conversation or saved wheel anytime</li>
+    <li>Clear all data through iOS Settings</li>
+    <li>No data persists after app deletion</li>
+  </ul>
+
+  <h2>Security</h2>
+
+  <h3>Secure API Communications</h3>
+  <ul>
+    <li>API requests routed through our secure proxy server</li>
+    <li>Your API key never exposed to your device</li>
+    <li>Proxy only forwards requests — no data storage</li>
+  </ul>
+
+  <h3>Data Protection</h3>
+  <ul>
+    <li>API communications use HTTPS encryption</li>
+    <li>No sensitive data stored in plain text</li>
+    <li>iOS sandboxing protects your local data</li>
+  </ul>
+
+  <h2>Children's Privacy</h2>
+  <p>Focus Wheel is designed for users 17 and older. We do not knowingly collect information from children under 17.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We'll notify you of any material changes through app updates. Continued use after changes indicates acceptance.</p>
+
+  <h2>Contact Us</h2>
+  <div class="contact-box">
+    <p style="margin-bottom: 0.5rem;">Questions about privacy? Reach out:</p>
+    <ul style="margin-bottom: 0;">
+      <li>Email: <a href="mailto:kelchert@mac.com">kelchert@mac.com</a></li>
+      <li>Website: <a href="https://www.focuswheelapp.com" target="_top">focuswheelapp.com</a></li>
+    </ul>
+  </div>
+
+  <h2>California Privacy Rights</h2>
+  <p>California residents have additional rights under CCPA including the right to know, delete, and opt-out of data sales (though we don't sell data).</p>
+
+  <h2>International Users</h2>
+  <p>By using Focus Wheel, you consent to data processing in the United States where Anthropic's servers are located.</p>
+
+  <div class="cta-box">
+    <p><strong>By using Focus Wheel, you agree to this privacy policy.</strong></p>
+    <a href="https://www.focuswheelapp.com" class="back-link" target="_top">← Back to Focus Wheel</a>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://www.focuswheelapp.com" target="_top">Home</a>
+    <a href="https://www.focuswheelapp.com/support" target="_top">Support</a>
+    <a href="https://www.focuswheelapp.com/privacy-policy" target="_top">Privacy Policy</a>
+    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use (EULA)</a>
+  </div>
+</div>
+</body>
+</html>
