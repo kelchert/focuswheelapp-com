@@ -701,8 +701,7 @@
   <div class="feature-grid">
     <div class="feature-card">
       <div class="feature-icon" style="display: flex; align-items: center; gap: 0.5rem;">
-        <!-- Mini orb icon -->
-        <svg width="36" height="36" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="url(#orb-g)"/><defs><radialGradient id="orb-g"><stop offset="0%" stop-color="#78C870"/><stop offset="100%" stop-color="#2A4B6D"/></radialGradient></defs></svg>
+        <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Coach orb" width="56" height="56" style="border-radius: 50%;">
       </div>
       <h3>Coach-Guided</h3>
       <p>Coach meets you where you are and gently helps you reach for each better-feeling thought, one step at a time.</p>
@@ -802,6 +801,8 @@
       }, t, i);
       t += 350;
     }
+
+    t += 700; // pause after last wedge before celebration
 
     // Celebration: swell + brighten, then settle back
     setTimeout(() => {
