@@ -110,6 +110,10 @@
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.06); opacity: 0.4; }
   }
+  @keyframes mini-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
 
   .hero-label {
     font-weight: 500;
@@ -701,7 +705,7 @@
   <div class="feature-grid">
     <div class="feature-card">
       <div class="feature-icon" style="display: flex; align-items: center; gap: 0.5rem;">
-        <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Coach orb" width="56" height="56" style="border-radius: 50%;">
+        <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Coach orb" width="56" height="56" style="border-radius: 50%; animation: mini-float 3s ease-in-out infinite; filter: drop-shadow(0 0 8px rgba(58, 154, 58, 0.3));">
       </div>
       <h3>Coach-Guided</h3>
       <p>Coach meets you where you are and gently helps you reach for each better-feeling thought, one step at a time.</p>
@@ -712,9 +716,15 @@
       <p>All data stays on your device. No account required. Your emotional journey is yours alone — no feeds, no tracking.</p>
     </div>
     <div class="feature-card">
-      <div style="width: 80%; margin: 0 auto 12px; text-align: center;">
-        <div style="height: 16px; border-radius: 0; background: linear-gradient(90deg, #3A0C0C, #A02828, #D4622A, #EED870, #A8D888, #78C870, #50B040, #3A9A3A);"></div>
-        <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; padding: 0 2px;"><span>Fear</span><span>Joy</span></div>
+      <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 12px;">
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #3A0C0C;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #A02828;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #D4622A;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #EED870;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #A8D888;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #78C870;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #50B040;"></span>
+        <span style="width: 8px; height: 8px; border-radius: 50%; background: #3A9A3A;"></span>
       </div>
       <h3>Guided or Solo</h3>
       <p>Let Coach walk you through it, or go free once you know the process. Both modes, your choice every time.</p>
