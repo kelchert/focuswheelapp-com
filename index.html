@@ -237,19 +237,19 @@
     animation: fadeUp 0.8s ease forwards 1.3s;
   }
 
-  /* App Store badge + Android notify slot */
+  /* App Store badge + Android notify slot — badge on top, notify stacked centered below */
   .cta-row {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+    gap: 1.25rem;
   }
 
   .android-slot {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.4rem;
     opacity: 0;
     animation: fadeUp 0.8s ease forwards 1.2s;
@@ -306,6 +306,7 @@
     color: var(--accent-teal);
     max-width: 230px;
     line-height: 1.5;
+    text-align: center;
   }
 
   .netlify-hp { display: none; }
@@ -590,7 +591,6 @@
     .wheel-progression { gap: 1rem; }
     .wheel-step svg { width: 90px; height: 90px; }
     .wheel-arrow { display: none; }
-    .android-slot { align-items: center; }
     .android-notify input[type="email"] { width: 150px; }
   }
 
