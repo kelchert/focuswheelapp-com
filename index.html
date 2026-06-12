@@ -237,6 +237,80 @@
     animation: fadeUp 0.8s ease forwards 1.3s;
   }
 
+  /* App Store badge + Android notify slot — badge on top, notify stacked centered below */
+  .cta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .android-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+
+  .android-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .android-fields {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .android-notify input[type="email"] {
+    width: 165px;
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid var(--divider);
+    background: var(--bg-input);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .android-notify input[type="email"]::placeholder { color: var(--text-muted); }
+  .android-notify input[type="email"]:focus { border-color: var(--accent-teal); }
+
+  .android-notify button {
+    padding: 0.5rem 0.9rem;
+    border-radius: 10px;
+    border: 1px solid rgba(120, 200, 112, 0.4);
+    background: rgba(120, 200, 112, 0.15);
+    color: var(--accent-teal);
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .android-notify button:hover {
+    background: rgba(120, 200, 112, 0.25);
+    border-color: var(--accent-teal);
+  }
+
+  .android-confirm {
+    font-size: 0.85rem;
+    color: var(--accent-teal);
+    max-width: 230px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .netlify-hp { display: none; }
+
   /* ── QUOTE ── */
   .quote-section {
     text-align: center;
@@ -517,6 +591,7 @@
     .wheel-progression { gap: 1rem; }
     .wheel-step svg { width: 90px; height: 90px; }
     .wheel-arrow { display: none; }
+    .android-notify input[type="email"] { width: 150px; }
   }
 
   /* Hero wheel animation transitions */
@@ -575,9 +650,24 @@
   <p class="hero-description">
     Come in feeling whatever. Leave feeling better — maybe just a little, maybe a lot. Twelve thoughts — each true. Each an easy reach. Then, just like that, you're there.
   </p>
-  <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener">
-    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-  </a>
+  <div class="cta-row">
+    <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener">
+      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+    <!-- Slot the Google Play badge will replace when Android drops -->
+    <div class="android-slot">
+      <form name="android-notify" id="android-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="android-notify">
+        <input type="hidden" name="form-name" value="android-notify">
+        <p class="netlify-hp"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
+        <span class="android-label">Android coming soon</span>
+        <div class="android-fields">
+          <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address">
+          <button type="submit">Notify me</button>
+        </div>
+      </form>
+      <p class="android-confirm" hidden>Thanks — we'll let you know when Android lands.</p>
+    </div>
+  </div>
   <p class="price-note">3 free wheels to start · $9.99 unlocks forever</p>
 </section>
 
@@ -818,6 +908,9 @@
     All 22 Abraham-Hicks processes in one app → Resurface: Deep Alignment
   </a>
   <div style="margin-top: 1.5rem;">
+    <a href="/roots" style="font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--coach-bubble)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Abraham on the Focus Wheel →</a>
+  </div>
+  <div style="margin-top: 1.5rem;">
     <p style="font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 0.4rem;">New to Abraham-Hicks?</p>
     <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
       <a href="https://abraham-hicks.com/introduction-to-abraham/" target="_blank" rel="noopener" style="font-size: 0.75rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--coach-bubble)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Free 75-minute introduction →</a>
@@ -898,6 +991,28 @@
 
   // Start after page load animations finish
   setTimeout(runCycle, 1800);
+})();
+</script>
+
+<script>
+// Android notify-me — AJAX submit to Netlify, swap form for confirmation inline
+(function() {
+  const form = document.getElementById('android-notify');
+  if (!form) return;
+  const confirmMsg = document.querySelector('.android-confirm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const body = new URLSearchParams(new FormData(form)).toString();
+    const done = function() {
+      form.style.display = 'none';
+      if (confirmMsg) confirmMsg.hidden = false;
+    };
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).then(done).catch(done);
+  });
 })();
 </script>
 
