@@ -2,3 +2,7 @@
 .DS_Store
 ._*
 .AppleDouble
+
+# Claude Code local settings — netlify.toml publish = "/" ships anything committed
+# here publicly; the global ~/.config/git/ignore covers this machine only.
+.claude/
