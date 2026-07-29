@@ -46,12 +46,46 @@ from repo root (`publish = "/"`).
   build-hook config next site session. Will recur on the next site change if unfixed.
 - **Post-merge form check (one-time) — OPEN.** Confirm `android-notify` detection in the
   Netlify Forms dashboard + one production test submission lands under Forms → android-notify.
-- **Android-launch list (FW pool) — TRIGGER HAS FIRED.** The stated trigger ("when FW
-  Android ships") fired 2026-07-29 — FW Android shipped, and the pool has not yet been
-  exported or sent to. The `android-notify` form is the FW Android-launch capture pool.
-  No ESP/export wiring yet; pick a send tool (MailerLite free candidate), export this
-  pool, and send the announcement. Twin pool on deepalignment.com is `da-android-notify`
+- **Android-launch list (FW pool) — CONDITION MET, SEND GATED, do not send.**
+  **Trigger CONDITION MET:** Focus Wheel Android shipped to Google Play 2026-07-29.
+  **SEND IS GATED — do not send yet.** Two reasons, both Kenn-ruled 2026-07-29:
+  (a) no promotion of FW-Android until Resurface-Android is also live; (b) FW-Android
+  ships copy naming Resurface as an available companion app with a $49.99 lifetime
+  tier, ACCEPTED as-is specifically because exposure would be stumble-upon only —
+  sending this pool converts stumble-upon into directed traffic and invalidates the
+  premise the accept-ruling rests on.
+  **RELEASE CONDITION:** Resurface-Android live on Google Play — the same event that
+  releases the held `feat/google-play-badge` branch.
+  **Do not treat "condition met" as "cleared to send." They are separate facts and
+  this entry must not collapse them again.**
+  **Pool segmentation, load-bearing for whenever this does send:** the `android-notify`
+  Netlify form now serves two distinct cohorts under one submission record.
+  Submissions BEFORE 2026-07-29 opted in to "Android coming soon / Notify me" — a
+  request to be told when Focus Wheel Android shipped. Submissions ON OR AFTER
+  2026-07-29 opted in to "New from Resurface / Keep me posted" — general updates. The
+  form name was deliberately NOT renamed (renaming creates a new Netlify form and
+  splits the existing submission record, which `CLAUDE.md` names as the system of
+  record). **The submission timestamp is the only discriminator** between the two
+  cohorts — any export treating the pool as homogeneous will conflate them. The
+  pre-2026-07-29 cohort consented to an Android-launch notification specifically, not
+  to general marketing; honor the narrower scope for that group when sending.
+  No ESP/export wiring yet; pick a send tool (MailerLite free candidate) once the
+  release condition is met. Twin pool on deepalignment.com is `da-android-notify`
   (separate, no reconciliation).
+  **Deploy verification (2026-07-29):** the copy fix (`bec7cfa`) is committed, pushed,
+  and **confirmed live** on focuswheelapp.com — cache-busted fetch, server `date`
+  header confirmed fresh. "Android coming soon" / "Notify me" / "we'll let you know
+  when Android lands" are gone from the live page. **The cohort boundary above is
+  therefore TRUE as written: 2026-07-29 is the actual cutover date.**
+  Build-hook status: the parked build-hook concern did **not** block this deploy.
+  Unknown whether it did not recur or whether something else got the build out — no
+  credentialed Netlify access from CC to distinguish. **Leaving that parked item OPEN.**
+  Form detection: the deployed `<form>` tag has `data-netlify` and `netlify-honeypot`
+  stripped and its attributes rewritten — Netlify's own build-time form-processing
+  signature (an undetected form ships through unmodified). Strong indirect evidence the
+  form re-registered this build, but **this is not the parked check** — dashboard
+  registration plus a live test submission landing under Forms → android-notify remains
+  **owed, Kenn's to do. Leaving that parked item OPEN.**
 
 ## Parked
 - OG/preview and copy are settled; no design work queued.
