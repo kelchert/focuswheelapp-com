@@ -654,18 +654,18 @@
     <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener">
       <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
     </a>
-    <!-- Slot the Google Play badge will replace when Android drops -->
+    <!-- Play badge held on feat/google-play-badge until Resurface-Android ships (Kenn-ruled 2026-07-29) -->
     <div class="android-slot">
       <form name="android-notify" id="android-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="android-notify">
         <input type="hidden" name="form-name" value="android-notify">
         <p class="netlify-hp"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
-        <span class="android-label">Android coming soon</span>
+        <span class="android-label">New from Resurface</span>
         <div class="android-fields">
           <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address">
-          <button type="submit">Notify me</button>
+          <button type="submit">Keep me posted</button>
         </div>
       </form>
-      <p class="android-confirm" hidden>Thanks — we'll let you know when Android lands.</p>
+      <p class="android-confirm" hidden>Thanks — we'll keep you posted as new processes and updates land.</p>
     </div>
   </div>
   <p class="price-note">3 free wheels to start · $9.99 unlocks forever</p>
@@ -995,7 +995,7 @@
 </script>
 
 <script>
-// Android notify-me — AJAX submit to Netlify, swap form for confirmation inline
+// Updates signup — AJAX submit to Netlify, swap form for confirmation inline
 (function() {
   const form = document.getElementById('android-notify');
   if (!form) return;
