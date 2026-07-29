@@ -29,15 +29,29 @@ from repo root (`publish = "/"`).
   `18e52c4`) — foundation.
 
 ## Open threads
+- **Google Play badge — STAGED, HELD, do not merge yet.** Branch
+  `feat/google-play-badge`. Adds the Play badge beside the App Store badge in both hero
+  and closing CTAs, retires "Android coming soon", repurposes the `android-notify`
+  capture to general updates ("New from Resurface" / "Keep me posted"), and moves the
+  price note under the badges it qualifies.
+  **Trigger to publish: Resurface: Deep Alignment going live on Android** (Kenn-ruled
+  2026-07-29). Publish = merge to `main`; Netlify deploys on merge — and per the open
+  webhook thread, be ready to Trigger deploy by hand.
+  ⚠️ Until merged, the live page still says "Android coming soon", which has been false
+  since FW Android shipped 2026-07-29.
+  Netlify form name deliberately unchanged (`android-notify`) so the existing submission
+  record is not split — revisit only if the stale name becomes confusing.
 - **Netlify auto-deploy webhook — OPEN, low priority.** Didn't fire on a PR merge; had to
   Trigger deploy manually. Cause unknown — check the GitHub→Netlify webhook delivery log /
   build-hook config next site session. Will recur on the next site change if unfixed.
 - **Post-merge form check (one-time) — OPEN.** Confirm `android-notify` detection in the
   Netlify Forms dashboard + one production test submission lands under Forms → android-notify.
-- **Android-launch list (FW pool) — collect-only.** The `android-notify` form is the FW
-  Android-launch capture pool. No ESP/export wiring yet; pick a send tool (MailerLite free
-  candidate) when FW Android ships, then export this pool and send the announcement. Twin
-  pool on deepalignment.com is `da-android-notify` (separate, no reconciliation).
+- **Android-launch list (FW pool) — TRIGGER HAS FIRED.** The stated trigger ("when FW
+  Android ships") fired 2026-07-29 — FW Android shipped, and the pool has not yet been
+  exported or sent to. The `android-notify` form is the FW Android-launch capture pool.
+  No ESP/export wiring yet; pick a send tool (MailerLite free candidate), export this
+  pool, and send the announcement. Twin pool on deepalignment.com is `da-android-notify`
+  (separate, no reconciliation).
 
 ## Parked
 - OG/preview and copy are settled; no design work queued.
