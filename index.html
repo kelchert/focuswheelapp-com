@@ -229,15 +229,39 @@
     width: auto;
   }
 
+  /* Badges + the price note they qualify travel together, so the note reads as
+     "here is what you get when you tap", not as a floating footnote under the
+     email capture. cta-row's gap then separates this group from the signup. */
+  .badge-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Both stores, side by side. Apple's SVG is trimmed tight; Google's PNG ships as
+     646x250 with the artwork only 564x168 inside it (transparent padding baked in,
+     measured 2026-07-29). Ratio 1.488, so 48px Apple == 71px Play optically.
+     Do not "normalise" these two numbers -- the badges will stop matching. */
+  .badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .badge-link--play img {
+    height: 71px;
+  }
+
   .price-note {
     font-size: 0.82rem;
     color: var(--text-muted);
     margin-top: 0.75rem;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.3s;
+    animation: fadeUp 0.8s ease forwards 1.2s;
   }
 
-  /* App Store badge + Android notify slot — badge on top, notify stacked centered below */
+  /* Store badges + price note on top, updates signup stacked centered below */
   .cta-row {
     display: flex;
     flex-direction: column;
@@ -252,7 +276,7 @@
     align-items: center;
     gap: 0.4rem;
     opacity: 0;
-    animation: fadeUp 0.8s ease forwards 1.2s;
+    animation: fadeUp 0.8s ease forwards 1.3s;
   }
 
   .android-label {
@@ -651,24 +675,30 @@
     Come in feeling whatever. Leave feeling better — maybe just a little, maybe a lot. Twelve thoughts — each true. Each an easy reach. Then, just like that, you're there.
   </p>
   <div class="cta-row">
-    <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener">
-      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-    </a>
-    <!-- Slot the Google Play badge will replace when Android drops -->
+    <div class="badge-group">
+      <div class="badge-row">
+        <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.deepalignment.focuswheel.unlock" class="badge-link badge-link--play" target="_blank" rel="noopener">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+      <p class="price-note">3 free wheels to start · $9.99 unlocks forever</p>
+    </div>
     <div class="android-slot">
       <form name="android-notify" id="android-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="android-notify">
         <input type="hidden" name="form-name" value="android-notify">
         <p class="netlify-hp"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
-        <span class="android-label">Android coming soon</span>
+        <span class="android-label">New from Resurface</span>
         <div class="android-fields">
           <input type="email" name="email" required placeholder="your@email.com" aria-label="Email address">
-          <button type="submit">Notify me</button>
+          <button type="submit">Keep me posted</button>
         </div>
       </form>
-      <p class="android-confirm" hidden>Thanks — we'll let you know when Android lands.</p>
+      <p class="android-confirm" hidden>Thanks — we'll keep you posted as new processes and updates land.</p>
     </div>
   </div>
-  <p class="price-note">3 free wheels to start · $9.99 unlocks forever</p>
 </section>
 
 <section class="quote-section">
@@ -889,9 +919,14 @@
     Something is important here — otherwise you wouldn't be feeling this way.
   </p>
   <p class="closing-sub"><em>What is it you actually want?</em></p>
-  <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
-    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-  </a>
+  <div class="badge-row">
+    <a href="https://apps.apple.com/app/id6761028443" class="badge-link" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
+      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.deepalignment.focuswheel.unlock" class="badge-link badge-link--play" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
+      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+    </a>
+  </div>
   <p class="price-note" style="opacity: 1; animation: none;">Try free · 3 wheels on the house · $9.99 for life</p>
 </section>
 
@@ -995,7 +1030,7 @@
 </script>
 
 <script>
-// Android notify-me — AJAX submit to Netlify, swap form for confirmation inline
+// Updates signup — AJAX submit to Netlify, swap form for confirmation inline
 (function() {
   const form = document.getElementById('android-notify');
   if (!form) return;
